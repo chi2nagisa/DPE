@@ -119,13 +119,13 @@ class Demo(nn.Module):
         output_dir = self.save_path
 
         crop_vi = os.path.join(output_dir, 'edit.mp4')
-        out_edit = cv2.VideoWriter(crop_vi, cv2.VideoWriter_fourcc(*'mp4v'), 25, (256,256))
+        out_edit = cv2.VideoWriter(crop_vi, cv2.VideoWriter_fourcc(*'mp4v'), args.fps, (256,256))
 
         crop_vi = os.path.join(output_dir, 's.mp4')
-        out_s = cv2.VideoWriter(crop_vi, cv2.VideoWriter_fourcc(*'mp4v'), 25, (256,256))
+        out_s = cv2.VideoWriter(crop_vi, cv2.VideoWriter_fourcc(*'mp4v'), args.fps, (256,256))
 
         crop_vi = os.path.join(output_dir, 'd.mp4')
-        out_d = cv2.VideoWriter(crop_vi, cv2.VideoWriter_fourcc(*'mp4v'), 25, (256,256))
+        out_d = cv2.VideoWriter(crop_vi, cv2.VideoWriter_fourcc(*'mp4v'), args.fps, (256,256))
 
         print('==> running')
         with torch.no_grad():
@@ -174,6 +174,7 @@ if __name__ == '__main__':
     parser.add_argument("--face", type=str, default='exp')
     parser.add_argument("--model_path", type=str, default='')
     parser.add_argument("--output_folder", type=str, default='')
+    parser.add_argument("--fps", type=float, default=25.0)
     args = parser.parse_args()
 
     # demo
